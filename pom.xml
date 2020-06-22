@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>19</version>
+    </parent>
+
+    <groupId>org.jboss.eap.quickstarts</groupId>
+    <artifactId>helloworld</artifactId>
+    <version>7.3.0.GA</version>
+    <packaging>war</packaging>
+
+    <name>Helloworld</name>
+
+    <description>Hello World Application for JBoss EAP 7</description>
+
+
+    <dependencies>
+
+        <!-- Import the CDI API, we use provided scope as the API is included in WildFly -->
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+
+        <!-- Import the Common Annotations API (JSR-250), we use provided scope
+            as the API is included in WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.annotation</groupId>
+            <artifactId>jboss-annotations-api_1.3_spec</artifactId>
+            <version>2.0.1.Final</version>
+        </dependency>
+
+        <!-- Import the Servlet API, we use provided scope as the API is included in WildFly -->
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+            <version>2.0.0.Final</version>
+        </dependency>
+
+	<dependency>
+    	    <groupId>org.springframework.security</groupId>
+    	    <artifactId>spring-security-core</artifactId>
+    	    <version>2.0.4</version>
+	</dependency>
+
+    </dependencies>
+
+    <build>
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.3</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.3</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+    <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jboss.maven.plugins</groupId>
+                        <artifactId>qstools</artifactId>
+                        <version>1.6.1.Final</version>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <version>2.1.2</version>
+            </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+</project>

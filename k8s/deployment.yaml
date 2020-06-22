@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hellworld
+  name: helloworld
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: hellworld
+    spec:
+      containers:
+        - image: registry.access.redhat.com/ubi8/ubi
+          imagePullPolicy: Always
+          name: helloworld
+          ports:
+            - containerPort: 8080
+              protocol: TCP
